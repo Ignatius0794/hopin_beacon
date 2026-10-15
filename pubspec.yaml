@@ -1,0 +1,84 @@
+name: qbyt
+description: "A focused Flutter launcher for opening a saved website."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+  flutter: '>=3.27.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  # State management
+  flutter_bloc: ^8.1.3
+  equatable: ^2.0.5
+
+  # Functional programming (Either)
+  dartz: ^0.10.1
+
+  # Dependency injection
+  get_it: ^8.0.3
+  injectable: ^2.3.2
+
+  # Routing
+  go_router: ^14.6.2
+
+  # Persistence
+  shared_preferences: ^2.3.5
+
+  webview_flutter: 4.13.0
+  webview_flutter_android: 4.10.0
+  loading_animation_widget: ^1.3.0
+  cupertino_icons: ^1.0.8
+  url_launcher: ^6.3.2
+  permission_handler: ^11.3.1
+  connectivity_plus: ^6.1.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  injectable_generator: ^2.4.1
+  build_runner: ^2.4.7
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: 2.4.4
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans[wght].ttf
+        - asset: assets/fonts/PlusJakartaSans-Italic[wght].ttf
+          style: italic
+    - family: CormorantGaramond
+      fonts:
+        - asset: assets/fonts/CormorantGaramond-Italic[wght].ttf
+          style: italic
+
+  assets:
+    - assets/
+    - assets/images/
+    - lib/features/website/presentation/i18n/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  remove_alpha_ios: true
+  background_color_ios: "#0D47A1"
+
+flutter_native_splash:
+  color: "#F3EFE4"
+  android: true
+  ios: true
+  android_12:
+    color: "#F3EFE4"
+    # A same-colour pixel keeps Android's mandatory launch icon visually blank.
+    image: android/app/src/main/res/drawable/background.png
