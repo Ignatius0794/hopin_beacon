@@ -1,6 +1,6 @@
 {
-    "name": "qbyt",
-    "short_name": "qbyt",
+    "name": "Sandbox",
+    "short_name": "Sandbox",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0D47A1",

@@ -1,8 +1,8 @@
-// ignore_for_file: use_super_parameters
-
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
+  const Failure();
+
   @override
   List<Object> get props => [];
 }
@@ -20,9 +20,19 @@ class CredentialFailure extends Failure {}
 class AuthenticationFailure extends Failure {}
 
 class DatabaseFailure extends Failure {
-  DatabaseFailure(String message);
+  const DatabaseFailure(this.message);
+
+  final String message;
+
+  @override
+  List<Object> get props => [message];
 }
 
 class NotFoundFailure extends Failure {
-  NotFoundFailure(String message);
+  const NotFoundFailure(this.message);
+
+  final String message;
+
+  @override
+  List<Object> get props => [message];
 }

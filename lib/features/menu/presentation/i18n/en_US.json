@@ -1,0 +1,14 @@
+{
+  "menu.title": "Menu",
+  "menu.helloUser": "Hello, {name}",
+  "menu.chooseItem": "Choose an item to start building your feature.",
+  "menu.home": "Home",
+  "menu.profile": "Profile",
+  "menu.settings": "Settings",
+  "menu.logout": "Logout",
+  "menu.darkMode": "Dark mode",
+  "menu.loadFailed": "The menu could not be loaded.",
+  "menu.empty": "No menu items are available.",
+  "menu.roleAdmin": "Administrator",
+  "menu.roleMember": "Member"
+}

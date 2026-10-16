@@ -1,0 +1,14 @@
+{
+  "menu.title": "Menu",
+  "menu.helloUser": "Hai, {name}",
+  "menu.chooseItem": "Pilih item untuk mula membina ciri anda.",
+  "menu.home": "Utama",
+  "menu.profile": "Profil",
+  "menu.settings": "Tetapan",
+  "menu.logout": "Log keluar",
+  "menu.darkMode": "Mod gelap",
+  "menu.loadFailed": "Menu tidak dapat dimuatkan.",
+  "menu.empty": "Tiada item menu tersedia.",
+  "menu.roleAdmin": "Pentadbir",
+  "menu.roleMember": "Ahli"
+}

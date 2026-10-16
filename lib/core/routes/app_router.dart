@@ -1,45 +1,77 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:qbyt/core/presentation/screens/error_screen.dart';
-import 'package:qbyt/core/presentation/screens/splash_screen.dart';
-import 'package:qbyt/features/website/domain/usecases/get_saved_website.dart';
-import 'package:qbyt/features/website/presentation/routes/website_routes.dart';
+import 'package:sandbox/core/localization/app_localizations.dart';
+import 'package:sandbox/core/routes/app_paths.dart';
+import 'package:sandbox/core/widgets/app_shell.dart';
+import 'package:sandbox/features/auth/domain/entities/app_user.dart';
+import 'package:sandbox/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:sandbox/features/auth/presentation/routes/auth_routes.dart';
+import 'package:sandbox/features/menu/presentation/routes/menu_routes.dart';
 
-@injectable
+@singleton
 class AppRouter {
-  AppRouter(this._getSavedWebsite);
+  AppRouter(this._authCubit);
 
-  final GetSavedWebsite _getSavedWebsite;
-  final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  final AuthCubit _authCubit;
 
   late final GoRouter router = GoRouter(
-    navigatorKey: _rootNavigatorKey,
-    initialLocation: splashPath,
-    routes: _buildRoutes(),
-    errorBuilder: (context, state) => ErrorScreen(
-      error: state.error?.toString(),
+    initialLocation: AppPaths.login,
+    refreshListenable: _BlocRefreshListenable(_authCubit.stream),
+    redirect: (context, state) {
+      final authState = _authCubit.state;
+      final authenticated = authState.status == AuthStatus.authenticated;
+      final loggingIn = state.matchedLocation == AppPaths.login;
+
+      if (!authenticated) return loggingIn ? null : AppPaths.login;
+      if (loggingIn) return AppPaths.home;
+
+      final openingAdminSettings = state.matchedLocation == AppPaths.settings;
+      if (openingAdminSettings && authState.user?.type != UserType.admin) {
+        return AppPaths.home;
+      }
+      return null;
+    },
+    routes: [
+      ...AuthRoutes.routes,
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) => AppShell(
+          navigationShell: navigationShell,
+        ),
+        branches: MenuRoutes.branches,
+      ),
+    ],
+    errorBuilder: (context, state) => Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(context.tr('core.somethingWentWrong')),
+            const SizedBox(height: 16),
+            FilledButton(
+              onPressed: () => context.go(AppPaths.login),
+              child: Text(context.tr('core.goToLogin')),
+            ),
+          ],
+        ),
+      ),
     ),
   );
+}
 
-  static const splashName = 'splash';
-  static const splashPath = '/splash';
+class _BlocRefreshListenable extends ChangeNotifier {
+  _BlocRefreshListenable(Stream<Object?> stream) {
+    _subscription = stream.listen((_) => notifyListeners());
+  }
 
-  List<RouteBase> _buildRoutes() => [
-        _buildSplashRoute(),
-        ...WebsiteRoutes.routes,
-      ];
+  late final StreamSubscription<Object?> _subscription;
 
-  GoRoute _buildSplashRoute() => GoRoute(
-        name: splashName,
-        path: splashPath,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: SplashScreen(getSavedWebsite: _getSavedWebsite),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-              FadeTransition(opacity: animation, child: child),
-          transitionDuration: const Duration(milliseconds: 500),
-        ),
-      );
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 }

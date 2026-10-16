@@ -1,0 +1,12 @@
+{
+  "auth.welcome": "Welcome",
+  "auth.signInToContinue": "Sign in to continue",
+  "auth.username": "Username",
+  "auth.password": "Password",
+  "auth.enterUsername": "Enter your username",
+  "auth.enterPassword": "Enter your password",
+  "auth.login": "Login",
+  "auth.loginFailed": "Login failed. Please try again.",
+  "auth.showPassword": "Show password",
+  "auth.hidePassword": "Hide password"
+}

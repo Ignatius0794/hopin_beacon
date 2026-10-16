@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@injectable
 class AppLocaleCubit extends Cubit<Locale> {
   AppLocaleCubit(this._preferences)
       : super(_localeFor(_preferences.getString(_key) ?? 'en'));

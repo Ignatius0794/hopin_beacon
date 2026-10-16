@@ -1,0 +1,12 @@
+{
+  "auth.welcome": "Selamat datang",
+  "auth.signInToContinue": "Log masuk untuk meneruskan",
+  "auth.username": "Nama pengguna",
+  "auth.password": "Kata laluan",
+  "auth.enterUsername": "Masukkan nama pengguna anda",
+  "auth.enterPassword": "Masukkan kata laluan anda",
+  "auth.login": "Log masuk",
+  "auth.loginFailed": "Log masuk gagal. Sila cuba lagi.",
+  "auth.showPassword": "Tunjukkan kata laluan",
+  "auth.hidePassword": "Sembunyikan kata laluan"
+}

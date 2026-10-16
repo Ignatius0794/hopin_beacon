@@ -1,5 +1,5 @@
-name: qbyt
-description: "A focused Flutter launcher for opening a saved website."
+name: sandbox
+description: "A clean Flutter starter app with a login and menu."
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -12,39 +12,20 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  # State management
-  flutter_bloc: ^8.1.3
-  equatable: ^2.0.5
-
-  # Functional programming (Either)
   dartz: ^0.10.1
-
-  # Dependency injection
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.3
   get_it: ^8.0.3
-  injectable: ^2.3.2
-
-  # Routing
   go_router: ^14.6.2
-
-  # Persistence
+  injectable: ^2.3.2
   shared_preferences: ^2.3.5
-
-  webview_flutter: 4.13.0
-  webview_flutter_android: 4.10.0
-  loading_animation_widget: ^1.3.0
-  cupertino_icons: ^1.0.8
-  url_launcher: ^6.3.2
-  permission_handler: ^11.3.1
-  connectivity_plus: ^6.1.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  integration_test:
-    sdk: flutter
   flutter_lints: ^5.0.0
-  injectable_generator: ^2.4.1
   build_runner: ^2.4.7
+  injectable_generator: ^2.4.1
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: 2.4.4
 
@@ -65,7 +46,9 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - lib/features/website/presentation/i18n/
+    - lib/core/localization/translations/
+    - lib/features/auth/presentation/i18n/
+    - lib/features/menu/presentation/i18n/
 
 flutter_launcher_icons:
   android: true
